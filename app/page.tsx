@@ -33,7 +33,7 @@ export default function ReunionPage() {
           </h1>
 
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#CBD5E1] mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-2">
-            ২०२३ সালে ডিপ্লোমা শেষ করার পর জীবন সবাইকে ব্যস্ত করে ফেলেছে। তবুও
+            2023 সালে ডিপ্লোমা শেষ করার পর জীবন সবাইকে ব্যস্ত করে ফেলেছে। তবুও
             কিছু সম্পর্ক, কিছু স্মৃতি, কিছু হাসি—সময় পেরিয়ে গেলেও মুছে যায়
             না। ঈদের পর কয়েকটা দিনের মধ্যে আমরা আবার একসাথে হতে চাই।
           </p>

@@ -272,7 +272,7 @@ export default function ReunionPage() {
                   { label: 'আয়োজন', value: 'CSE Get Together' },
                   { label: 'প্রতিষ্ঠান', value: 'Cox\'s Bazar Polytechnic Institute' },
                   { label: 'ব্যাচ', value: 'Session 2019-20' },
-                  { label: 'ডিপ্লোমা সম্পন্ন', value: '২०२३' },
+                  { label: 'ডিপ্লোমা সম্পন্ন', value: '2023' },
                   { label: 'সম্ভাব্য সময়', value: 'ঈদের পর কয়েক দিনের মধ্যে' },
                   { label: 'স্থান', value: 'পরে সবাই মিলে ঠিক করা হবে' },
                   { label: 'উদ্দেশ্য', value: 'পুরোনো সহপাঠীদের পুনর্মিলনী', value2: '' },
