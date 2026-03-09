@@ -1,0 +1,211 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #0F172A;
+  --foreground: #FFF7ED;
+  --card: #1E293B;
+  --card-foreground: #FFF7ED;
+  --popover: #1E293B;
+  --popover-foreground: #FFF7ED;
+  --primary: #F59E0B;
+  --primary-foreground: #1E293B;
+  --secondary: #111827;
+  --secondary-foreground: #FFF7ED;
+  --muted: #64748B;
+  --muted-foreground: #CBD5E1;
+  --accent: #F59E0B;
+  --accent-foreground: #0F172A;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFF7ED;
+  --border: #334155;
+  --input: #1E293B;
+  --ring: #F59E0B;
+  --chart-1: #F59E0B;
+  --chart-2: #8B5CF6;
+  --chart-3: #EC4899;
+  --chart-4: #06B6D4;
+  --chart-5: #10B981;
+  --radius: 0.625rem;
+  --sidebar: #1E293B;
+  --sidebar-foreground: #FFF7ED;
+  --sidebar-primary: #F59E0B;
+  --sidebar-primary-foreground: #0F172A;
+  --sidebar-accent: #F59E0B;
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: #334155;
+  --sidebar-ring: #F59E0B;
+}
+
+.dark {
+  --background: #0F172A;
+  --foreground: #FFF7ED;
+  --card: #1E293B;
+  --card-foreground: #FFF7ED;
+  --popover: #1E293B;
+  --popover-foreground: #FFF7ED;
+  --primary: #F59E0B;
+  --primary-foreground: #1E293B;
+  --secondary: #111827;
+  --secondary-foreground: #FFF7ED;
+  --muted: #64748B;
+  --muted-foreground: #CBD5E1;
+  --accent: #F59E0B;
+  --accent-foreground: #0F172A;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFF7ED;
+  --border: #334155;
+  --input: #1E293B;
+  --ring: #F59E0B;
+  --chart-1: #F59E0B;
+  --chart-2: #8B5CF6;
+  --chart-3: #EC4899;
+  --chart-4: #06B6D4;
+  --chart-5: #10B981;
+  --sidebar: #1E293B;
+  --sidebar-foreground: #FFF7ED;
+  --sidebar-primary: #F59E0B;
+  --sidebar-primary-foreground: #0F172A;
+  --sidebar-accent: #F59E0B;
+  --sidebar-accent-foreground: #0F172A;
+  --sidebar-border: #334155;
+  --sidebar-ring: #F59E0B;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Ensure minimum width handling for very small screens */
+  html {
+    min-width: 250px;
+  }
+  
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Better text wrapping for Bengali text */
+  p, h1, h2, h3, h4, h5, h6, span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Performance: Use GPU acceleration */
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-scale-in {
+    will-change: opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+/* Lightweight CSS animations - optional, not applied by default */
+@keyframes fadeIn {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale3d(0.98, 0.98, 1);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* These classes can be added manually if subtle animations are desired */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Remove delay classes to prevent hydration issues and LCP problems */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-scale-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
