@@ -42,6 +42,8 @@ export function ReunionForm() {
   const formRef = useRef<HTMLDivElement>(null);
   const [showSuccess, setShowSuccess] = useState(false);
   const [successData, setSuccessData] = useState<ReunionFormInputs | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -67,16 +69,45 @@ export function ReunionForm() {
   const interestValue = watch('interest');
   const wantUpdatesValue = watch('wantUpdates');
 
-  const onSubmit = (data: ReunionFormInputs) => {
-    console.log('[v0] Form submitted with Zod validation:', data);
-    setSuccessData(data);
-    setShowSuccess(true);
+  const onSubmit = async (data: ReunionFormInputs) => {
+    setIsSubmitting(true);
+    setErrorMessage(null);
 
-    setTimeout(() => {
-      reset();
-      setShowSuccess(false);
-      setSuccessData(null);
-    }, 4000);
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        // Handle errors
+        setErrorMessage(result.message || 'একটি সমস্যা হয়েছে');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Success
+      console.log('Form submitted successfully:', result);
+      setSuccessData(data);
+      setShowSuccess(true);
+
+      setTimeout(() => {
+        reset();
+        setShowSuccess(false);
+        setSuccessData(null);
+      }, 4000);
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      setErrorMessage('দুঃখিত, একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -98,6 +129,13 @@ export function ReunionForm() {
               onSubmit={handleSubmit(onSubmit)}
               className="relative p-5 sm:p-8 md:p-10 lg:p-12 rounded-2xl bg-gradient-to-br from-[#1E293B]/80 to-[#111827]/80 border border-[#F59E0B]/20 backdrop-blur-sm space-y-5 sm:space-y-6"
             >
+              {/* Error Message */}
+              {errorMessage && (
+                <div className="bg-[#EF4444]/10 border border-[#EF4444]/30 rounded-lg p-4 text-[#EF4444] text-sm">
+                  {errorMessage}
+                </div>
+              )}
+
               <div>
                 <Label htmlFor="fullName" className="text-[#FFF7ED] mb-2 block">
                   পূর্ণ নাম <span className="text-[#EF4444]">*</span>
@@ -212,9 +250,10 @@ export function ReunionForm() {
 
               <Button
                 type="submit"
-                className="w-full bg-[#F59E0B] hover:bg-[#DC8502] text-[#0F172A] font-semibold text-base sm:text-lg py-5 sm:py-6 rounded-lg mt-6 sm:mt-8"
+                disabled={isSubmitting}
+                className="w-full bg-[#F59E0B] hover:bg-[#DC8502] text-[#0F172A] font-semibold text-base sm:text-lg py-5 sm:py-6 rounded-lg mt-6 sm:mt-8 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                সম্মতি জানাই
+                {isSubmitting ? 'জমা হচ্ছে...' : 'সম্মতি জানাই'}
               </Button>
             </form>
           </div>
